@@ -38,18 +38,6 @@ fn read_file(input_file: String) -> Result<Knapsack, Box<dyn Error>> {
     Ok(knp)
 }
 
-fn new_knapsack() -> Knapsack {
-    let base_v = KnapsackBase {
-        max_weight: 0,
-        number: 0,
-        max_size: 0
-    };
-    return Knapsack {
-        base_values: base_v,
-        values: Vec::<Record>::new()
-    };
-}
-
 pub fn read(input_file: String) -> Result<Knapsack, ()>{
     let res = read_file(input_file);
     match res {
@@ -58,7 +46,7 @@ pub fn read(input_file: String) -> Result<Knapsack, ()>{
             Ok(knp)
         },
         Err(e) => {
-            println!("ERROR");
+            println!("{}",e);
             Err(())
         },
     }
