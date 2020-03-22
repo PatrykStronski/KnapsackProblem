@@ -17,5 +17,3 @@ pub struct Knapsack {
     pub base_values: KnapsackBase,
     pub values: Vec<Record>
 }
-
-

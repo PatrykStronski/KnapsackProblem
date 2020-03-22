@@ -34,7 +34,7 @@ fn copy_individual(ind: &Vec<bool>) -> Vec<bool> {
     return new_v;
 }
 
-pub fn tournament(population: Vec<Vec<bool>>, tournament_size: u16, task_set: Knapsack) -> Vec<Vec<bool>> {
+pub fn tournament(population: Vec<Vec<bool>>, tournament_size: u16, task_set: &Knapsack) -> Vec<Vec<bool>> {
     let things_nmb = task_set.values.len();
     let mut position: u16 = 0;
     let max = population.len() as u16;
@@ -46,7 +46,7 @@ pub fn tournament(population: Vec<Vec<bool>>, tournament_size: u16, task_set: Kn
         let finish_tournament = calculate_tournament_finish(position, max, tournament_size);
         for i in 0..finish_tournament {
             let index = (position + i) as usize;
-            let current_money: u16 = evaluate(&population[index], &task_set);
+            let current_money: u16 = evaluate(&population[index], task_set);
             if current_money > best_money {
                 best_money = current_money;
                 best_ind = copy_individual(&population[index]);
