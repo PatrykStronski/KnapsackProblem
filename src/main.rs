@@ -1,4 +1,4 @@
-mod task1;
+//mod task1;
 mod task2;
 mod random_population;
 mod selection;
@@ -14,11 +14,19 @@ fn main() -> Result<(),()> {
     let mut population = random_population::init_population(1001,1000);
 
     //task1::generate(1001,15000,15000,out.to_string());
+    
     let knp = task2::read(out.to_string())?;
     for _i in 0..iterations {
         population = selection::tournament(population, 10, &knp); 
-        let mut children = crossover::crossover_all(population.to_vec(), crossover_rate);
-        mutation::mutate_all(&mut children, mutation_rate);
+        population = crossover::crossover_all(population.to_vec(), crossover_rate);
+        mutation::mutate_all(&mut population, mutation_rate);
+        if population.len() == 1 || population.len() == 2 {
+            break;
+        }
+    }
+    for winner in population {
+        let value = selection::evaluate(&winner, &knp);
+        println!("evaluation {}", value);
     }
     Ok(())
 }

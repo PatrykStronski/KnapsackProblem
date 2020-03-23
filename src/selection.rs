@@ -1,6 +1,6 @@
 use crate::knap::{Knapsack};
 
-fn evaluate(individual: &Vec<bool>, task_set: &Knapsack) -> u16 {
+pub fn evaluate(individual: &Vec<bool>, task_set: &Knapsack) -> u16 {
     let mut sum: u16 = 0;
     for x in 0..individual.len() {
         if individual[x] == true {
