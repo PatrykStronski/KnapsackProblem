@@ -31,20 +31,20 @@ fn evaluate_winners(knp: &knap::Knapsack, crossover_rate: f32, mutation_rate: f3
 
 fn main() -> Result<(),()> {
     let out = "out.csv";
-    let crossover_rate =  0.01;
-    let mutation_rate = 0.002; 
+    let crossover_rate =  0.02;
+    let mutation_rate = 0.01; 
     let tournament_size = 5;
+    let population_size = 800;
     let n = 1001;
     let knp = task2::read(out.to_string())?;
     //task1::generate(1001,15000,15000,out.to_string());
     println!("\n"); 
 
-    let mut population_size = 100;
     evaluate_winners(&knp,crossover_rate,mutation_rate,tournament_size, population_size, n);
-    population_size = 500;
+    /*population_size = 500;
     evaluate_winners(&knp,crossover_rate,mutation_rate,tournament_size, population_size, n);
     population_size = 800;
     evaluate_winners(&knp,crossover_rate,mutation_rate,tournament_size, population_size, n);
-
+    */
     Ok(())
 }
