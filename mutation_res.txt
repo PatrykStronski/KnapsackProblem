@@ -1,0 +1,150 @@
+Read correctly
+
+
+crossover_rate: 0.01
+mutation_rate 0.002
+population_size 800
+tournament_size10
+
+evaluation 16667 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.005
+population_size 800
+tournament_size10
+
+evaluation 16353 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.01
+population_size 800
+tournament_size10
+
+evaluation 16738 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.01
+mutation_rate 0.002
+population_size 800
+tournament_size10
+
+evaluation 16403 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.005
+population_size 800
+tournament_size10
+
+evaluation 16720 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.01
+population_size 800
+tournament_size10
+
+evaluation 16997 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.01
+mutation_rate 0.002
+population_size 800
+tournament_size10
+
+evaluation 16416 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.005
+population_size 800
+tournament_size10
+
+evaluation 16753 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.01
+population_size 800
+tournament_size10
+
+evaluation 16073 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.01
+mutation_rate 0.002
+population_size 800
+tournament_size10
+
+evaluation 16361 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.005
+population_size 800
+tournament_size10
+
+evaluation 16695 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.01
+population_size 800
+tournament_size10
+
+evaluation 17440 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.01
+mutation_rate 0.002
+population_size 800
+tournament_size10
+
+evaluation 16696 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.005
+population_size 800
+tournament_size10
+
+evaluation 16776 
+finished 
+
+
+crossover_rate: 0.01
+mutation_rate 0.01
+population_size 800
+tournament_size10
+
+evaluation 16448 
+finished 
+
+

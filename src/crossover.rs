@@ -45,6 +45,9 @@ pub fn crossover_all(mut individuals: Vec<Vec<bool>>, crossover_rate: f32) -> Ve
     rand::thread_rng().shuffle(&mut individuals);
     let mut children = Vec::<Vec<bool>>::with_capacity(calculate_children_capacity(number) as usize);
     let mut iter: u16 = 0;
+    if number == 1 {
+        return individuals;
+    }
     while iter < number-1 {
         let n = iter as usize;
         let i1 = individuals[n].to_vec();

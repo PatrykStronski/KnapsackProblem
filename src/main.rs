@@ -8,7 +8,7 @@ mod mutation;
 
 fn evaluate_winners(knp: &knap::Knapsack, crossover_rate: f32, mutation_rate: f32, tournament_size: u16, population_size: u16, n: u16){
     let mut population = random_population::init_population(n,population_size);
-    let iterations = 10;
+    let iterations = 5;
     for _i in 0..iterations {
         population = selection::tournament(population.to_vec(), tournament_size, knp); 
         population = crossover::crossover_all(population.to_vec(), crossover_rate);
@@ -31,18 +31,19 @@ fn evaluate_winners(knp: &knap::Knapsack, crossover_rate: f32, mutation_rate: f3
 
 fn main() -> Result<(),()> {
     let out = "out.csv";
-    let mutation_rate = 0.01; 
-    let tournament_size = 10;
-    let population_size = 800;
+    let crossover_rate =  0.01;
+    let mutation_rate = 0.002; 
+    let tournament_size = 5;
     let n = 1001;
     let knp = task2::read(out.to_string())?;
     //task1::generate(1001,15000,15000,out.to_string());
     println!("\n"); 
-    let mut crossover_rate =  0.01;
+
+    let mut population_size = 100;
     evaluate_winners(&knp,crossover_rate,mutation_rate,tournament_size, population_size, n);
-    crossover_rate =  0.02;
+    population_size = 500;
     evaluate_winners(&knp,crossover_rate,mutation_rate,tournament_size, population_size, n);
-    crossover_rate =  0.03;
+    population_size = 800;
     evaluate_winners(&knp,crossover_rate,mutation_rate,tournament_size, population_size, n);
 
     Ok(())
