@@ -1,0 +1,60 @@
+Read correctly
+
+
+crossover_rate: 0.02
+mutation_rate 0.01
+population_size 800
+tournament_size5
+
+evaluation 16652 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.02
+mutation_rate 0.01
+population_size 800
+tournament_size5
+
+evaluation 16463 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.02
+mutation_rate 0.01
+population_size 800
+tournament_size5
+
+evaluation 16061 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.02
+mutation_rate 0.01
+population_size 800
+tournament_size5
+
+evaluation 16025 
+finished 
+
+
+Read correctly
+
+
+crossover_rate: 0.02
+mutation_rate 0.01
+population_size 800
+tournament_size5
+
+evaluation 16700 
+finished 
+
+
