@@ -6,6 +6,7 @@ mod knap;
 mod crossover;
 mod mutation;
 mod plot_results;
+mod ant_colony;
 
 fn evaluate_winner(knp: &knap::Knapsack, crossover_rate: f32, mutation_rate: f32, tournament_size: u32, population_size: u32, n: u32) -> u32{
     let mut population = random_population::init_population(n,population_size);
@@ -45,7 +46,7 @@ fn main() -> Result<(),()> {
     let mut crossover_rate: f32 =  0.01;
     let mut increment = 0.0;
 
-
+    
     println!("Starting eval for crossover rate\n");
 
     increment = 0.05;
@@ -135,7 +136,8 @@ fn main() -> Result<(),()> {
     population_size = 800;
 
     println!("For best values the eval is equal {}",evaluate_winner(&knp,0.001,0.006,10, 1000, n));
-    
+
+    println!("FROM ant colony: {}", ant_colony::ant_evaluate(7, random_population::init_population(n,500).to_vec(), &knp, 7));
 
     Ok(())
 }
