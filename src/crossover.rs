@@ -8,51 +8,51 @@ fn should_crossover(crossover_rate: f32) -> bool {
     }
 }
 
-fn choose_exchange_point(max: u16) -> u16 {
+fn choose_exchange_point(max: u32) -> u32 {
     return rand::thread_rng().gen_range(1,max);
 }
 
-fn exchange_chromosomes(individual1: Vec<bool>, individual2: Vec<bool>, exchange_point: u16) -> Vec<bool> {
-    let ind_len = individual1.len() as u16;
-    let mut child = Vec::<bool>::with_capacity(ind_len as usize);
+fn exchange_chromosomes(individual1: Vec<bool>, individual2: Vec<bool>, exchange_point: u32) -> Vec<Vec<bool>> {
+    let ind_len = individual1.len() as u32;
+    let mut children = Vec::<Vec<bool>>::with_capacity(2);
+    let mut child1 = Vec::<bool>::with_capacity(ind_len as usize);
+    let mut child2 = Vec::<bool>::with_capacity(ind_len as usize);
     for i in 0..exchange_point {
-        child.push(individual1[i as usize]);
+        child1.push(individual1[i as usize]);
+        child2.push(individual2[i as usize]);
     }
     for i in exchange_point..ind_len {
-        child.push(individual2[i as usize]);
+        child1.push(individual2[i as usize]);
+        child2.push(individual1[i as usize]);
     }
-    return child;
+    children.push(child1);
+    children.push(child2);
+    return children;
 }
 
-fn crossover(individual1: Vec<bool>, individual2: Vec<bool>, crossover_rate: f32) -> Vec<bool> {
-    if ! should_crossover(crossover_rate) { 
-        return individual1; 
+fn crossover(individual1: Vec<bool>, individual2: Vec<bool>, crossover_rate: f32) -> Vec<Vec<bool>> {
+    if should_crossover(crossover_rate) {
+        let exchange_point = choose_exchange_point(individual1.len() as u32);
+        return exchange_chromosomes(individual1, individual2, exchange_point);
     }
-    let exchange_point = choose_exchange_point(individual1.len() as u16);
-    return exchange_chromosomes(individual1, individual2, exchange_point);        
-}
-
-fn calculate_children_capacity(number: u16) -> u16 {
-    let res: f32 = (number as f32) / 2.0;
-    if res.fract() != 0.0 {
-        return (res + 1.0) as u16;
-    }
-    return res as u16;
+    let mut children = Vec::<Vec<bool>>::with_capacity(2);
+    children.push(individual1);
+    children.push(individual2);
+    return children;
 }
 
 pub fn crossover_all(mut individuals: Vec<Vec<bool>>, crossover_rate: f32) -> Vec<Vec<bool>> {
-    let number = individuals.len() as u16;
+    let number = individuals.len() as u32;
     rand::thread_rng().shuffle(&mut individuals);
-    let mut children = Vec::<Vec<bool>>::with_capacity(calculate_children_capacity(number) as usize);
-    let mut iter: u16 = 0;
-    if number == 1 {
-        return individuals;
-    }
+    let mut children = Vec::<Vec<bool>>::with_capacity(individuals.len());
+    let mut iter: u32 = 0;
     while iter < number-1 {
         let n = iter as usize;
         let i1 = individuals[n].to_vec();
         let i2 = individuals[n+1].to_vec();
-        children.push(crossover(i1, i2, crossover_rate));
+        let crossover_off = crossover(i1, i2, crossover_rate);
+        children.push(crossover_off[0].to_vec());
+        children.push(crossover_off[1].to_vec());
         iter=iter+2;
     }
     return children;

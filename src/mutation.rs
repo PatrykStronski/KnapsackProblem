@@ -14,7 +14,7 @@ fn choose_random_gene(max: usize, taken: Vec<usize>) -> usize {
 }
 
 pub fn mutate(individual1: &mut Vec<bool>, mutation_rate: f32) {
-    let nmb_genes_to_mutate = ((mutation_rate * 1000.0) - (mutation_rate * 1000.0).fract()) as u16;
+    let nmb_genes_to_mutate = ((mutation_rate * 1000.0) - (mutation_rate * 1000.0).fract()) as u32;
     let max_range = individual1.len();
     let mut gene_indexes = Vec::<usize>::with_capacity(nmb_genes_to_mutate as usize);
     for _i in 0..nmb_genes_to_mutate {

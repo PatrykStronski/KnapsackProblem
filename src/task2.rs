@@ -4,9 +4,9 @@ use crate::knap::{Record,Knapsack,KnapsackBase};
 
 fn insert_base(rec: Record) -> KnapsackBase {
     let base = KnapsackBase {
-        max_weight: rec.weight,
-        number: rec.price,
-        max_size: rec.size
+        max_weight: rec.size,
+        number: rec.weight,
+        max_size: rec.price
     };
     return base;
 }
@@ -33,7 +33,7 @@ fn read_file(input_file: String) -> Result<Knapsack, Box<dyn Error>> {
     }
     let knp = Knapsack {
         base_values: knp_base,
-        values: recs 
+        values: recs
     };
     Ok(knp)
 }

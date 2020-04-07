@@ -25,6 +25,10 @@ fn lower_down(current: u32, surplus: f32) -> u32 {
         return current - 1;
     } else {
         if current > 1 {
+            println!("{} {}",current, lowering.round());
+            if current <= lowering.round() as u32 {
+                return 1;
+            }
             return current - (lowering.round() as u32);
         }
     }
@@ -51,9 +55,10 @@ fn evaluate_surplus(arr: &mut[Obj], control_p: u32, property: String) -> f32 {
         }
     }
     let sum_f = sum as f32;
-    let numerator = sum_f - 2.0 * control_p as f32;
-    let denominator = sum_f;
-    return numerator / denominator;
+    let numerator = sum_f * 10.0 - control_p as f32;
+    let denominator = control_p as f32;
+    if numerator < 0.0 { return numerator / denominator; }
+    return (sum_f - 64000.0) / 64000.0;
 }
 
 fn smooth_set(arr: &mut[Obj], w: u32, s:u32) {
@@ -72,9 +77,9 @@ fn smooth_set(arr: &mut[Obj], w: u32, s:u32) {
 
 fn generate_one(n: u32, w: u32, s:u32) -> Obj {
     let unit = Obj {
-        weight: rand::thread_rng().gen_range(1,(10*w/n) as u32),
-        price: rand::thread_rng().gen_range(1,n),
-        size: rand::thread_rng().gen_range(1,(10*s/n) as u32)
+        weight: rand::thread_rng().gen_range(1,(w/n) as u32),
+        price: rand::thread_rng().gen_range(1,(50) as u32),
+        size: rand::thread_rng().gen_range(1,(s/n) as u32)
     };
     return unit;
 }
@@ -85,13 +90,13 @@ fn generate_one(n: u32, w: u32, s:u32) -> Obj {
  * @param s - maximum size
  * @param output_file - filename*/
 
-pub fn generate(n: usize, w: u32, s: u32, output_file: String) {
+pub fn generate(n: usize, max_weight: u32, max_size: u32, output_file: String) {
     let mut arr = Vec::with_capacity(n);
     for _x in 0..n {
-        arr.push(generate_one(n as u32, w, s));
+        arr.push(generate_one(n as u32, max_weight, max_size));
     }
-    smooth_set(&mut arr, w, s);
-    let res = save_to_file(&mut arr,n as u32, w, s, output_file);
+    smooth_set(&mut arr, max_weight, max_size);
+    let res = save_to_file(&mut arr,n as u32, max_weight, max_size, output_file);
     match res {
         Ok(v) => println!("Written correctly, version {:?}",v),
         Err(v) => println!("ERROR: {:?}", v),
