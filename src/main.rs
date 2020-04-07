@@ -9,7 +9,7 @@ mod plot_results;
 
 fn evaluate_winner(knp: &knap::Knapsack, crossover_rate: f32, mutation_rate: f32, tournament_size: u32, population_size: u32, n: u32) -> u32{
     let mut population = random_population::init_population(n,population_size);
-    let iterations = 5;
+    let iterations = 50;
     for _i in 0..iterations {
         population = selection::tournament(population.to_vec(), tournament_size, knp);
         population = crossover::crossover_all(population.to_vec(), crossover_rate);
@@ -37,11 +37,11 @@ fn main() -> Result<(),()> {
     let nmb_increments = 10;
     let max_weight = 19000;
     let max_size = 19000;
-    task1::generate(1001,max_weight,max_size,out.to_string());
+    //task1::generate(1001,max_weight,max_size,out.to_string());
 
     let mut mutation_rate = 0.01;
-    let mut tournament_size = 5;
-    let mut population_size = 800;
+    let mut tournament_size = 10;
+    let mut population_size = 600;
     let mut crossover_rate: f32 =  0.01;
     let mut increment = 0.0;
 
@@ -133,6 +133,9 @@ fn main() -> Result<(),()> {
     }
     plot_results::plot_results(winners.to_vec(),measured_value.to_vec(),"population_size_size".to_string(), caption.to_string());
     population_size = 800;
+
+    println!("For best values the eval is equal {}",evaluate_winner(&knp,0.001,0.006,10, 1000, n));
+    
 
     Ok(())
 }
