@@ -77,9 +77,9 @@ fn smooth_set(arr: &mut[Obj], w: u32, s:u32) {
 
 fn generate_one(n: u32, w: u32, s:u32) -> Obj {
     let unit = Obj {
-        weight: rand::thread_rng().gen_range(1,(w/n) as u32),
+        weight: rand::thread_rng().gen_range(1,19 as u32),
         price: rand::thread_rng().gen_range(1,(50) as u32),
-        size: rand::thread_rng().gen_range(1,(s/n) as u32)
+        size: rand::thread_rng().gen_range(1,19 as u32)
     };
     return unit;
 }

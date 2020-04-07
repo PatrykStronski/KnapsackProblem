@@ -9,7 +9,7 @@ mod plot_results;
 
 fn evaluate_winner(knp: &knap::Knapsack, crossover_rate: f32, mutation_rate: f32, tournament_size: u32, population_size: u32, n: u32) -> u32{
     let mut population = random_population::init_population(n,population_size);
-    let iterations = 20;
+    let iterations = 5;
     for _i in 0..iterations {
         population = selection::tournament(population.to_vec(), tournament_size, knp);
         population = crossover::crossover_all(population.to_vec(), crossover_rate);
